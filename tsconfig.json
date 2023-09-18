@@ -22,6 +22,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
+    "outDir": "./lib"
   },
   "exclude": ["docusaurus"]
 }
