@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { FlatList, StyleSheet, View, ScrollView } from 'react-native'
-import { MD2Theme, Text, TouchableRipple, useTheme } from 'react-native-paper'
+import { MD2Theme, Text, TouchableRipple } from 'react-native-paper'
 import { passedTheme, range } from '../utils'
 
 const ITEM_HEIGHT = 62
@@ -75,7 +75,6 @@ function YearPure({
   selected: boolean
   onPressYear: (newYear: number) => any
 }) {
-
   let textFont = passedTheme?.isV3
     ? passedTheme.fonts.bodyLarge
     : (passedTheme as any as MD2Theme).fonts.medium
@@ -100,7 +99,11 @@ function YearPure({
               styles.yearLabel,
               selected
                 ? // eslint-disable-next-line react-native/no-inline-styles
-                  { color: passedTheme.isV3 ? passedTheme.colors.onPrimary : '#fff' }
+                  {
+                    color: passedTheme.isV3
+                      ? passedTheme.colors.onPrimary
+                      : '#fff',
+                  }
                 : {
                     color: passedTheme.isV3
                       ? passedTheme.colors.onSurfaceVariant

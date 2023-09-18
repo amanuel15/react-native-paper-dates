@@ -5,7 +5,7 @@ import {
   useWindowDimensions,
   TextInput as TextInputNative,
 } from 'react-native'
-import { MD2Theme, Text, useTheme } from 'react-native-paper'
+import { MD2Theme, Text } from 'react-native-paper'
 
 import {
   clockTypes,

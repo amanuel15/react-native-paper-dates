@@ -14,7 +14,6 @@ import CalendarHeader from './CalendarHeader'
 import { useCallback, useMemo } from 'react'
 import YearPicker from './YearPicker'
 import Color from 'color'
-import { useTheme } from 'react-native-paper'
 import { useLatest, lightenBy, darkenBy, passedTheme } from '../utils'
 
 export type ModeType = 'single' | 'range' | 'multiple'

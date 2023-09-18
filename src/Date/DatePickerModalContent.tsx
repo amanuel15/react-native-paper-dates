@@ -17,7 +17,7 @@ import DatePickerModalContentHeader, {
 } from './DatePickerModalContentHeader'
 import CalendarEdit from './CalendarEdit'
 import DatePickerModalHeaderBackground from './DatePickerModalHeaderBackground'
-import { passedTheme } from 'src/utils'
+import { passedTheme } from '../utils'
 
 export type LocalState = {
   startDate: CalendarDate

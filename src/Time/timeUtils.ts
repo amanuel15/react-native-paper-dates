@@ -1,8 +1,8 @@
 import * as React from 'react'
 import Color from 'color'
-import { MD2Theme, useTheme } from 'react-native-paper'
+import { MD2Theme } from 'react-native-paper'
 
-import { passedTheme } from 'src/utils'
+import { passedTheme } from '../utils'
 
 export const circleSize = 256
 
@@ -65,7 +65,7 @@ export const clockTypes: ClockTypeMap = {
   hours: 'hours',
 }
 
-// Code inspiration and copied from: https://github.com/ShaneGH/analogue-time-picker/blob/master/src/utils/angle.ts
+// Code inspiration and copied from: https://github.com/ShaneGH/analogue-time-picker/blob/master/../utils/angle.ts
 
 const outerHeight = 34
 const _30 = Math.PI / 6
@@ -180,7 +180,9 @@ export function useSwitchColors(highlighted: boolean) {
 
   const color = React.useMemo<string>(() => {
     if (highlighted && !passedTheme.dark) {
-      return passedTheme.isV3 ? passedTheme.colors.onSurfaceVariant : passedTheme.colors.primary
+      return passedTheme.isV3
+        ? passedTheme.colors.onSurfaceVariant
+        : passedTheme.colors.primary
     }
     if (highlighted && passedTheme.dark) {
       return passedTheme.isV3
@@ -225,7 +227,9 @@ export function useInputColors(highlighted: boolean) {
   const color = React.useMemo<string>(() => {
     if (passedTheme.isV3) {
       if (!highlighted) {
-        return passedTheme.isV3 ? passedTheme.colors.onSurface : passedTheme.colors.onBackground
+        return passedTheme.isV3
+          ? passedTheme.colors.onSurface
+          : passedTheme.colors.onBackground
       }
       return passedTheme.isV3
         ? passedTheme.colors.onPrimaryContainer

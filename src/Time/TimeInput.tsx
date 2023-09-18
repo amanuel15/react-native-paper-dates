@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Platform,
 } from 'react-native'
-import { useTheme, TouchableRipple } from 'react-native-paper'
+import { TouchableRipple } from 'react-native-paper'
 
 import Color from 'color'
 import {
@@ -15,7 +15,7 @@ import {
   PossibleInputTypes,
   useInputColors,
 } from './timeUtils'
-import { passedTheme } from 'src/utils'
+import { passedTheme } from '../utils'
 
 interface TimeInputProps
   extends Omit<Omit<TextInputProps, 'value'>, 'onFocus'> {

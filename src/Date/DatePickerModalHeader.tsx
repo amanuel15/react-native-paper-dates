@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Animated, StyleSheet } from 'react-native'
-import { Appbar, Button, useTheme } from 'react-native-paper'
+import { Appbar, Button } from 'react-native-paper'
 
 import { passedTheme, useHeaderTextColor } from '../utils'
 import { getTranslation } from '../translations/utils'

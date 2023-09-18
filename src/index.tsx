@@ -7,6 +7,7 @@ export { default as TimePicker } from './Time/TimePicker'
 export { default as DatePickerInput } from './Date/DatePickerInput'
 export type { TranslationsType } from './translations/utils'
 export { registerTranslation, getTranslation } from './translations/utils'
+export { registerTheme } from './utils'
 
 export { default as ar } from './translations/ar'
 export { default as ca } from './translations/ca'

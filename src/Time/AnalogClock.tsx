@@ -5,7 +5,6 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
-import { useTheme } from 'react-native-paper'
 import {
   circleSize,
   clockTypes,
@@ -162,7 +161,10 @@ function AnalogClock({
         pointerEvents="none"
       >
         <View
-          style={[styles.endPoint, { backgroundColor: passedTheme.colors.primary }]}
+          style={[
+            styles.endPoint,
+            { backgroundColor: passedTheme.colors.primary },
+          ]}
         />
       </View>
       <View

@@ -3,14 +3,14 @@ import {
   DefaultTheme,
   MD3DarkTheme,
   overlay,
-  useTheme,
-  MD3Theme
+  MD3Theme,
+  MD3LightTheme,
 } from 'react-native-paper'
 import Color from 'color'
 
 export type PaperTheme = typeof MD3DarkTheme | typeof DefaultTheme
 
-export let passedTheme = useTheme()
+export let passedTheme = MD3LightTheme
 
 export function registerTheme(paperTheme: MD3Theme) {
   passedTheme = paperTheme
@@ -23,7 +23,6 @@ export function useLatest<T>(value: T) {
 }
 
 export function useHeaderBackgroundColor() {
-  
   if (passedTheme.isV3) {
     return passedTheme.colors.surface
   }
@@ -33,7 +32,6 @@ export function useHeaderBackgroundColor() {
 }
 
 export function useHeaderColorIsLight() {
-  
   const background =
     passedTheme.dark && passedTheme.mode === 'adaptive'
       ? passedTheme.colors.surface
@@ -42,7 +40,6 @@ export function useHeaderColorIsLight() {
 }
 
 export function useHeaderTextColor() {
-  
   const isLight = useHeaderColorIsLight()
   if (passedTheme.isV3) {
     return passedTheme.colors.onSurfaceVariant
@@ -51,7 +48,6 @@ export function useHeaderTextColor() {
 }
 
 export function useTextColorOnPrimary() {
-  
   const isDark = !Color(passedTheme.colors.primary).isLight()
 
   if (passedTheme.isV3) {

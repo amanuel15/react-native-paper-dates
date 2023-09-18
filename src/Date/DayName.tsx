@@ -1,10 +1,9 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { MD2Theme, Text, useTheme } from 'react-native-paper'
-import { passedTheme } from 'src/utils'
+import { MD2Theme, Text } from 'react-native-paper'
+import { passedTheme } from '../utils'
 
 function DayName({ label }: { label: string }) {
-
   let textFont = passedTheme?.isV3
     ? passedTheme.fonts.bodySmall
     : (passedTheme as any as MD2Theme).fonts.medium

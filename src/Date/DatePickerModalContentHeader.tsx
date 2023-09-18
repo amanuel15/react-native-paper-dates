@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { IconButton, MD2Theme, Text, useTheme } from 'react-native-paper'
+import { IconButton, MD2Theme, Text } from 'react-native-paper'
 import type { ModeType } from './Calendar'
 import type { LocalState } from './DatePickerModalContent'
 import { passedTheme, useHeaderTextColor } from '../utils'
@@ -69,7 +69,9 @@ export default function DatePickerModalContentHeader(
 
   const isEditingEnabled = allowEditing && mode !== 'multiple'
 
-  const supportingTextColor = passedTheme.isV3 ? passedTheme.colors.onSurfaceVariant : color
+  const supportingTextColor = passedTheme.isV3
+    ? passedTheme.colors.onSurfaceVariant
+    : color
 
   const textFont = passedTheme?.isV3
     ? passedTheme.fonts.labelMedium

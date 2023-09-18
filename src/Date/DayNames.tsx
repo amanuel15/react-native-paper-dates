@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import DayName from './DayName'
-import { useTheme } from 'react-native-paper'
 import { DisableWeekDaysType, showWeekDay } from './dateUtils'
-import { passedTheme } from 'src/utils'
+import { passedTheme } from '../utils'
 
 export const dayNamesHeight = 44
 

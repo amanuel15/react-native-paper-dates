@@ -8,7 +8,7 @@ import {
   Platform,
   StatusBar,
 } from 'react-native'
-import { MD3Theme, useTheme } from 'react-native-paper'
+import { MD3Theme } from 'react-native-paper'
 import DatePickerModalContent, {
   DatePickerModalContentMultiProps,
   DatePickerModalContentRangeProps,
@@ -36,15 +36,18 @@ interface PassedProps {
 
 export interface DatePickerModalSingleProps
   extends DatePickerModalContentSingleProps,
-    DatePickerModalProps, PassedProps {}
+    DatePickerModalProps,
+    PassedProps {}
 
 export interface DatePickerModalMultiProps
   extends DatePickerModalContentMultiProps,
-    DatePickerModalProps, PassedProps {}
+    DatePickerModalProps,
+    PassedProps {}
 
 export interface DatePickerModalRangeProps
   extends DatePickerModalContentRangeProps,
-    DatePickerModalProps, PassedProps {}
+    DatePickerModalProps,
+    PassedProps {}
 
 export function DatePickerModal(
   props:

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
-import { useTheme } from 'react-native-paper'
-import { passedTheme } from 'src/utils'
+import { passedTheme } from '../utils'
 
 export default function AnimatedCrossView({
   collapsed,

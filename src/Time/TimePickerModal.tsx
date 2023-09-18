@@ -9,13 +9,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native'
 
-import {
-  Button,
-  IconButton,
-  MD2Theme,
-  overlay,
-  useTheme,
-} from 'react-native-paper'
+import { Button, IconButton, MD2Theme, overlay } from 'react-native-paper'
 
 import TimePicker from './TimePicker'
 import {
@@ -26,7 +20,7 @@ import {
   PossibleInputTypes,
   reverseInputTypes,
 } from './timeUtils'
-import { passedTheme } from 'src/utils'
+import { passedTheme } from '../utils'
 
 const supportedOrientations: (
   | 'portrait'
@@ -77,7 +71,6 @@ export function TimePickerModal({
   inputFontSize?: number
   defaultInputType?: PossibleInputTypes
 }) {
-
   let textFont
   let labelText = label
 
