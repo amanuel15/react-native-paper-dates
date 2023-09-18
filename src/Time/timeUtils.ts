@@ -2,6 +2,8 @@ import * as React from 'react'
 import Color from 'color'
 import { MD2Theme, useTheme } from 'react-native-paper'
 
+import { passedTheme } from 'src/utils'
+
 export const circleSize = 256
 
 export type PossibleHourTypes = 'am' | 'pm'
@@ -156,87 +158,85 @@ export function getAngle(left: number, top: number, size: number) {
 }
 
 export function useSwitchColors(highlighted: boolean) {
-  const theme = useTheme()
   const backgroundColor = React.useMemo<string>(() => {
-    if (theme.dark) {
+    if (passedTheme.dark) {
       if (highlighted) {
-        return theme.isV3
-          ? theme.colors.tertiaryContainer
-          : Color(theme.colors.primary).hex()
+        return passedTheme.isV3
+          ? passedTheme.colors.tertiaryContainer
+          : Color(passedTheme.colors.primary).hex()
       }
-      return theme.colors.backdrop
+      return passedTheme.colors.backdrop
     }
 
     if (highlighted) {
-      if (theme.isV3) {
-        return theme.colors.primaryContainer
+      if (passedTheme.isV3) {
+        return passedTheme.colors.primaryContainer
       }
 
-      return Color(theme.colors.primary).lighten(1).hex()
+      return Color(passedTheme.colors.primary).lighten(1).hex()
     }
-    return theme.colors.surface
-  }, [highlighted, theme])
+    return passedTheme.colors.surface
+  }, [highlighted])
 
   const color = React.useMemo<string>(() => {
-    if (highlighted && !theme.dark) {
-      return theme.isV3 ? theme.colors.onSurfaceVariant : theme.colors.primary
+    if (highlighted && !passedTheme.dark) {
+      return passedTheme.isV3 ? passedTheme.colors.onSurfaceVariant : passedTheme.colors.primary
     }
-    if (highlighted && theme.dark) {
-      return theme.isV3
-        ? theme.colors.onTertiaryContainer
-        : theme.colors.background
+    if (highlighted && passedTheme.dark) {
+      return passedTheme.isV3
+        ? passedTheme.colors.onTertiaryContainer
+        : passedTheme.colors.background
     }
-    if (theme.isV3) {
-      return theme.colors.onSurfaceVariant
+    if (passedTheme.isV3) {
+      return passedTheme.colors.onSurfaceVariant
     } else {
-      return (theme as any as MD2Theme).colors.placeholder
+      return (passedTheme as any as MD2Theme).colors.placeholder
     }
-  }, [highlighted, theme])
+  }, [highlighted])
 
   return { backgroundColor, color }
 }
 
 export function useInputColors(highlighted: boolean) {
-  const theme = useTheme()
   const backgroundColor = React.useMemo<string>(() => {
-    if (theme.dark) {
+    if (passedTheme.dark) {
       if (highlighted) {
-        return theme.isV3
-          ? theme.colors.primaryContainer
-          : Color(theme.colors.primary).hex()
+        return passedTheme.isV3
+          ? passedTheme.colors.primaryContainer
+          : Color(passedTheme.colors.primary).hex()
       }
-      return theme.isV3
-        ? theme.colors.surfaceVariant
-        : Color(theme.colors.surface).lighten(1.4).hex()
+      return passedTheme.isV3
+        ? passedTheme.colors.surfaceVariant
+        : Color(passedTheme.colors.surface).lighten(1.4).hex()
     }
 
     if (highlighted) {
-      if (theme.isV3) {
-        return theme.colors.secondaryContainer
+      if (passedTheme.isV3) {
+        return passedTheme.colors.secondaryContainer
       }
-      return Color(theme.colors.primary).lighten(1).hex()
+      return Color(passedTheme.colors.primary).lighten(1).hex()
     }
-    if (theme.isV3) {
-      return theme.colors.surfaceVariant
+    if (passedTheme.isV3) {
+      return passedTheme.colors.surfaceVariant
     }
-    return Color(theme.colors.surface).darken(0.1).hex()
-  }, [highlighted, theme])
+    return Color(passedTheme.colors.surface).darken(0.1).hex()
+  }, [highlighted])
 
   const color = React.useMemo<string>(() => {
-    if (theme.isV3) {
+    if (passedTheme.isV3) {
       if (!highlighted) {
-        return theme.isV3 ? theme.colors.onSurface : theme.colors.onBackground
+        return passedTheme.isV3 ? passedTheme.colors.onSurface : passedTheme.colors.onBackground
       }
-      return theme.isV3
-        ? theme.colors.onPrimaryContainer
-        : theme.colors.onBackground
+      return passedTheme.isV3
+        ? passedTheme.colors.onPrimaryContainer
+        : passedTheme.colors.onBackground
     } else {
-      if (highlighted && !theme.dark) {
-        return theme.colors.primary
+      if (highlighted && !passedTheme.dark) {
+        return passedTheme.colors.primary
       }
-      return (theme as any as MD2Theme).colors.text
+      return (passedTheme as any as MD2Theme).colors.text
     }
-  }, [highlighted, theme])
+  }, [highlighted])
 
   return { backgroundColor, color }
 }

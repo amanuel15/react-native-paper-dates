@@ -18,7 +18,7 @@ import {
   PossibleClockTypes,
 } from './timeUtils'
 import * as React from 'react'
-import { useLatest } from '../utils'
+import { passedTheme, useLatest } from '../utils'
 import AnalogClockHours from './AnalogClockHours'
 import AnimatedClockSwitcher from './AnimatedClockSwitcher'
 import AnalogClockMinutes from './AnalogClockMinutes'
@@ -40,7 +40,6 @@ function AnalogClock({
     focused?: undefined | PossibleClockTypes
   }) => any
 }) {
-  const theme = useTheme()
   const { mode } = React.useContext(DisplayModeContext)
   // used to make pointer shorter if hours are selected and above 12
   const shortPointer = hours >= 12 && is24Hour
@@ -128,11 +127,11 @@ function AnalogClock({
       style={[
         styles.clock,
         {
-          backgroundColor: theme.isV3
-            ? theme.colors.surfaceVariant
-            : theme.dark
-            ? Color(theme.colors.surface).lighten(1.4).hex()
-            : Color(theme.colors.surface).darken(0.1).hex(),
+          backgroundColor: passedTheme.isV3
+            ? passedTheme.colors.surfaceVariant
+            : passedTheme.dark
+            ? Color(passedTheme.colors.surface).lighten(1.4).hex()
+            : Color(passedTheme.colors.surface).darken(0.1).hex(),
         },
       ]}
       // @ts-ignore -> https://github.com/necolas/react-native-web/issues/506
@@ -142,7 +141,7 @@ function AnalogClock({
         style={[
           styles.line,
           {
-            backgroundColor: theme.colors.primary,
+            backgroundColor: passedTheme.colors.primary,
             transform: [
               { rotate: -90 + pointerNumber * degreesPerNumber + 'deg' },
               {
@@ -163,7 +162,7 @@ function AnalogClock({
         pointerEvents="none"
       >
         <View
-          style={[styles.endPoint, { backgroundColor: theme.colors.primary }]}
+          style={[styles.endPoint, { backgroundColor: passedTheme.colors.primary }]}
         />
       </View>
       <View
@@ -174,7 +173,7 @@ function AnalogClock({
           style={[
             styles.middlePoint,
             {
-              backgroundColor: theme.colors.primary,
+              backgroundColor: passedTheme.colors.primary,
             },
           ]}
         />

@@ -4,10 +4,17 @@ import {
   MD3DarkTheme,
   overlay,
   useTheme,
+  MD3Theme
 } from 'react-native-paper'
 import Color from 'color'
 
 export type PaperTheme = typeof MD3DarkTheme | typeof DefaultTheme
+
+export let passedTheme = useTheme()
+
+export function registerTheme(paperTheme: MD3Theme) {
+  passedTheme = paperTheme
+}
 
 export function useLatest<T>(value: T) {
   const ref = React.useRef(value)
@@ -16,42 +23,42 @@ export function useLatest<T>(value: T) {
 }
 
 export function useHeaderBackgroundColor() {
-  const theme = useTheme()
-  if (theme.isV3) {
-    return theme.colors.surface
+  
+  if (passedTheme.isV3) {
+    return passedTheme.colors.surface
   }
-  return theme.dark && theme.mode === 'adaptive'
-    ? overlay(4, theme.colors.surface)
-    : theme.colors.primary
+  return passedTheme.dark && passedTheme.mode === 'adaptive'
+    ? overlay(4, passedTheme.colors.surface)
+    : passedTheme.colors.primary
 }
 
 export function useHeaderColorIsLight() {
-  const theme = useTheme()
+  
   const background =
-    theme.dark && theme.mode === 'adaptive'
-      ? theme.colors.surface
-      : theme.colors.primary
+    passedTheme.dark && passedTheme.mode === 'adaptive'
+      ? passedTheme.colors.surface
+      : passedTheme.colors.primary
   return Color(background).isLight()
 }
 
 export function useHeaderTextColor() {
-  const theme = useTheme()
+  
   const isLight = useHeaderColorIsLight()
-  if (theme.isV3) {
-    return theme.colors.onSurfaceVariant
+  if (passedTheme.isV3) {
+    return passedTheme.colors.onSurfaceVariant
   }
   return !isLight ? '#fff' : '#000'
 }
 
 export function useTextColorOnPrimary() {
-  const theme = useTheme()
-  const isDark = !Color(theme.colors.primary).isLight()
+  
+  const isDark = !Color(passedTheme.colors.primary).isLight()
 
-  if (theme.isV3) {
-    if (isDark && theme.dark) {
-      return theme.colors.onSurface
+  if (passedTheme.isV3) {
+    if (isDark && passedTheme.dark) {
+      return passedTheme.colors.onSurface
     } else {
-      return theme.colors.onPrimary
+      return passedTheme.colors.onPrimary
     }
   }
 

@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { IconButton, MD2Theme, Text, useTheme } from 'react-native-paper'
 import type { ModeType } from './Calendar'
 import type { LocalState } from './DatePickerModalContent'
-import { useHeaderTextColor } from '../utils'
+import { passedTheme, useHeaderTextColor } from '../utils'
 import Color from 'color'
 import { getTranslation } from '../translations/utils'
 
@@ -63,18 +63,17 @@ export default function DatePickerModalContentHeader(
     calendarIcon,
     allowEditing,
   } = props
-  const theme = useTheme()
   const label = getLabel(props.locale, props.mode, props.label)
 
   const color = useHeaderTextColor()
 
   const isEditingEnabled = allowEditing && mode !== 'multiple'
 
-  const supportingTextColor = theme.isV3 ? theme.colors.onSurfaceVariant : color
+  const supportingTextColor = passedTheme.isV3 ? passedTheme.colors.onSurfaceVariant : color
 
-  const textFont = theme?.isV3
-    ? theme.fonts.labelMedium
-    : (theme as any as MD2Theme).fonts.medium
+  const textFont = passedTheme?.isV3
+    ? passedTheme.fonts.labelMedium
+    : (passedTheme as any as MD2Theme).fonts.medium
 
   return (
     <View style={styles.header}>
@@ -106,10 +105,10 @@ export default function DatePickerModalContentHeader(
         <IconButton
           icon={
             collapsed
-              ? editIcon ?? theme.isV3
+              ? editIcon ?? passedTheme.isV3
                 ? 'pencil-outline'
                 : 'pencil'
-              : calendarIcon ?? theme.isV3
+              : calendarIcon ?? passedTheme.isV3
               ? 'calendar-blank'
               : 'calendar'
           }
@@ -118,7 +117,7 @@ export default function DatePickerModalContentHeader(
               ? getTranslation(props.locale, 'typeInDate')
               : getTranslation(props.locale, 'pickDateFromCalendar')
           }
-          iconColor={theme.isV3 ? theme.colors.onSurface : color}
+          iconColor={passedTheme.isV3 ? passedTheme.colors.onSurface : color}
           onPress={onToggle}
         />
       ) : null}
@@ -132,11 +131,10 @@ export function HeaderContentSingle({
   color,
   locale,
 }: HeaderContentProps & { color: string }) {
-  const theme = useTheme()
   const lighterColor = Color(color).fade(0.5).rgb().toString()
   const dateColor = state.date
-    ? theme.isV3
-      ? theme.colors.onSurface
+    ? passedTheme.isV3
+      ? passedTheme.colors.onSurface
       : color
     : lighterColor
 
@@ -164,12 +162,11 @@ export function HeaderContentMulti({
   color,
   locale,
 }: HeaderContentProps & { color: string; moreLabel: string | undefined }) {
-  const theme = useTheme()
   const dateCount = state.dates?.length || 0
   const lighterColor = Color(color).fade(0.5).rgb().toString()
   const dateColor = dateCount
-    ? theme.isV3
-      ? theme.colors.onSurface
+    ? passedTheme.isV3
+      ? passedTheme.colors.onSurface
       : color
     : lighterColor
 
@@ -208,7 +205,6 @@ export function HeaderContentRange({
   endLabel = 'End',
   color,
 }: HeaderContentProps & { color: string }) {
-  const theme = useTheme()
   const formatter = React.useMemo(() => {
     return new Intl.DateTimeFormat(locale, {
       month: 'short',
@@ -218,13 +214,13 @@ export function HeaderContentRange({
 
   const lighterColor = Color(color).fade(0.5).rgb().toString()
   const startColor = state.startDate
-    ? theme.isV3
-      ? theme.colors.onSurface
+    ? passedTheme.isV3
+      ? passedTheme.colors.onSurface
       : color
     : lighterColor
   const endColor = state.endDate
-    ? theme.isV3
-      ? theme.colors.onSurface
+    ? passedTheme.isV3
+      ? passedTheme.colors.onSurface
       : color
     : lighterColor
 

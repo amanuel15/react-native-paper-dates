@@ -34,7 +34,7 @@ import type {
   ValidRangeType,
 } from './Calendar'
 import { dayNamesHeight } from './DayNames'
-import { useTextColorOnPrimary } from '../utils'
+import { passedTheme, useTextColorOnPrimary } from '../utils'
 
 interface BaseMonthProps {
   locale: undefined | string
@@ -92,7 +92,6 @@ function Month(props: MonthSingleProps | MonthRangeProps | MonthMultiProps) {
     locale,
     validRange,
   } = props
-  const theme = useTheme()
   const textColorOnPrimary = useTextColorOnPrimary()
   const realIndex = getRealIndex(index)
   const isHorizontal = scrollMode === 'horizontal'
@@ -250,9 +249,9 @@ function Month(props: MonthSingleProps | MonthRangeProps | MonthMultiProps) {
     date,
   ])
 
-  let textFont = theme?.isV3
-    ? theme.fonts.titleSmall
-    : (theme as any as MD2Theme).fonts.medium
+  let textFont = passedTheme?.isV3
+    ? passedTheme.fonts.titleSmall
+    : (passedTheme as any as MD2Theme).fonts.medium
 
   return (
     <View style={[styles.month, { height: getMonthHeight(scrollMode, index) }]}>
@@ -293,9 +292,9 @@ function Month(props: MonthSingleProps | MonthRangeProps | MonthMultiProps) {
                 styles.monthLabel,
                 {
                   ...textFont,
-                  color: theme.isV3
-                    ? theme.colors.onSurfaceVariant
-                    : theme.colors.onSurface,
+                  color: passedTheme.isV3
+                    ? passedTheme.colors.onSurfaceVariant
+                    : passedTheme.colors.onSurface,
                 },
               ]}
               selectable={false}
@@ -307,10 +306,10 @@ function Month(props: MonthSingleProps | MonthRangeProps | MonthMultiProps) {
                 onPress={isHorizontal ? () => onPressYear(year) : undefined}
                 icon={
                   selectingYear
-                    ? theme.isV3
+                    ? passedTheme.isV3
                       ? 'menu-up'
                       : 'chevron-up'
-                    : theme.isV3
+                    : passedTheme.isV3
                     ? 'menu-down'
                     : 'chevron-down'
                 }
@@ -329,7 +328,7 @@ function Month(props: MonthSingleProps | MonthRangeProps | MonthMultiProps) {
               ) : (
                 <Day
                   key={gd.dayIndex}
-                  theme={theme}
+                  theme={passedTheme}
                   day={gd.dayOfMonth}
                   month={gd.month}
                   year={gd.year}

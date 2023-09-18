@@ -17,7 +17,7 @@ import DatePickerModalContentHeader, {
 } from './DatePickerModalContentHeader'
 import CalendarEdit from './CalendarEdit'
 import DatePickerModalHeaderBackground from './DatePickerModalHeaderBackground'
-import { useTheme } from 'react-native-paper'
+import { passedTheme } from 'src/utils'
 
 export type LocalState = {
   startDate: CalendarDate
@@ -138,8 +138,7 @@ export function DatePickerModalContent(
     setCollapsed((prev) => !prev)
   }, [setCollapsed])
 
-  const theme = useTheme()
-  const defaultUppercase = !theme.isV3
+  const defaultUppercase = !passedTheme.isV3
   return (
     <>
       <DatePickerModalHeaderBackground>

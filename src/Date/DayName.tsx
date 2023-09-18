@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { MD2Theme, Text, useTheme } from 'react-native-paper'
+import { passedTheme } from 'src/utils'
 
 function DayName({ label }: { label: string }) {
-  const theme = useTheme()
 
-  let textFont = theme?.isV3
-    ? theme.fonts.bodySmall
-    : (theme as any as MD2Theme).fonts.medium
+  let textFont = passedTheme?.isV3
+    ? passedTheme.fonts.bodySmall
+    : (passedTheme as any as MD2Theme).fonts.medium
 
   return (
     <View style={styles.dayName}>
@@ -15,7 +15,7 @@ function DayName({ label }: { label: string }) {
         maxFontSizeMultiplier={1.5}
         style={[
           styles.dayNameLabel,
-          { ...textFont, color: theme.colors.onSurface },
+          { ...textFont, color: passedTheme.colors.onSurface },
         ]}
         selectable={false}
       >

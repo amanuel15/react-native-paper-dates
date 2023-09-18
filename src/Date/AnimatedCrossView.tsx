@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
 import { useTheme } from 'react-native-paper'
+import { passedTheme } from 'src/utils'
 
 export default function AnimatedCrossView({
   collapsed,
@@ -11,7 +12,6 @@ export default function AnimatedCrossView({
   calendarEdit: any
   collapsed: boolean
 }) {
-  const theme = useTheme()
   const calendarOpacity = React.useRef<Animated.Value>(
     new Animated.Value(collapsed ? 1 : 0)
   )
@@ -55,7 +55,7 @@ export default function AnimatedCrossView({
         style={[
           styles.calendarEdit,
           {
-            backgroundColor: theme.colors.surface,
+            backgroundColor: passedTheme.colors.surface,
             opacity: calendarOpacity.current.interpolate({
               inputRange: [0, 1],
               outputRange: [1, 0],

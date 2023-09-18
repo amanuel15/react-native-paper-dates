@@ -5,6 +5,7 @@ import { HelperText, useTheme } from 'react-native-paper'
 import { View, StyleSheet } from 'react-native'
 import useDateInput from './inputUtils'
 import type { DatePickerInputProps } from './DatePickerInput.shared'
+import { passedTheme } from 'src/utils'
 
 function DatePickerInputWithoutModal(
   {
@@ -48,7 +49,6 @@ function DatePickerInputWithoutModal(
   },
   ref: any
 ) {
-  const theme = useTheme()
   const {
     formattedValue,
     inputFormat,
@@ -92,7 +92,7 @@ function DatePickerInputWithoutModal(
             disabled={disabled}
             onChangeText={onDateInputChangeText}
             onChange={(e) => onChangeText && onChangeText(e.nativeEvent.text)}
-            keyboardAppearance={theme.dark ? 'dark' : 'default'}
+            keyboardAppearance={passedTheme.dark ? 'dark' : 'default'}
             error={(!!error && !hideValidationErrors) || !!hasError}
             style={[styles.input, style]}
             inputButton={inputButton}

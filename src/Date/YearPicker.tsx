@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { FlatList, StyleSheet, View, ScrollView } from 'react-native'
 import { MD2Theme, Text, TouchableRipple, useTheme } from 'react-native-paper'
-import { range } from '../utils'
+import { passedTheme, range } from '../utils'
 
 const ITEM_HEIGHT = 62
 
@@ -18,7 +18,6 @@ export default function YearPicker({
   startYear: number
   endYear: number
 }) {
-  const theme = useTheme()
   const flatList = React.useRef<FlatList<number> | null>(null)
   const years = range(
     isNaN(startYear) ? 1800 : startYear,
@@ -41,7 +40,7 @@ export default function YearPicker({
       style={[
         StyleSheet.absoluteFill,
         styles.root,
-        { backgroundColor: theme.colors.surface },
+        { backgroundColor: passedTheme.colors.surface },
         selectingYear ? styles.opacity1 : styles.opacity0,
       ]}
       pointerEvents={selectingYear ? 'auto' : 'none'}
@@ -76,11 +75,10 @@ function YearPure({
   selected: boolean
   onPressYear: (newYear: number) => any
 }) {
-  const theme = useTheme()
 
-  let textFont = theme?.isV3
-    ? theme.fonts.bodyLarge
-    : (theme as any as MD2Theme).fonts.medium
+  let textFont = passedTheme?.isV3
+    ? passedTheme.fonts.bodyLarge
+    : (passedTheme as any as MD2Theme).fonts.medium
 
   return (
     <View style={styles.year}>
@@ -93,7 +91,7 @@ function YearPure({
         <View
           style={[
             styles.yearInner,
-            selected ? { backgroundColor: theme.colors.primary } : null,
+            selected ? { backgroundColor: passedTheme.colors.primary } : null,
           ]}
         >
           <Text
@@ -102,11 +100,11 @@ function YearPure({
               styles.yearLabel,
               selected
                 ? // eslint-disable-next-line react-native/no-inline-styles
-                  { color: theme.isV3 ? theme.colors.onPrimary : '#fff' }
+                  { color: passedTheme.isV3 ? passedTheme.colors.onPrimary : '#fff' }
                 : {
-                    color: theme.isV3
-                      ? theme.colors.onSurfaceVariant
-                      : theme.colors.onSurface,
+                    color: passedTheme.isV3
+                      ? passedTheme.colors.onSurfaceVariant
+                      : passedTheme.colors.onSurface,
                   },
               { ...textFont },
             ]}

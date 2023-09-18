@@ -5,6 +5,7 @@ import { useMemo } from 'react'
 import Color from 'color'
 import { inputTypes, PossibleInputTypes, useSwitchColors } from './timeUtils'
 import { DisplayModeContext } from './TimePicker'
+import { passedTheme } from 'src/utils'
 
 export default function AmPmSwitcher({
   onChange,
@@ -16,19 +17,18 @@ export default function AmPmSwitcher({
   inputType: PossibleInputTypes
 }) {
   const { setMode, mode } = React.useContext(DisplayModeContext)
-  const theme = useTheme()
   const backgroundColor = useMemo<string>(() => {
-    if (theme.isV3) {
-      return theme.colors.outline
+    if (passedTheme.isV3) {
+      return passedTheme.colors.outline
     }
     return Color(
-      theme.dark
-        ? Color(theme.colors.surface).lighten(1.2).hex()
-        : theme.colors.surface
+      passedTheme.dark
+        ? Color(passedTheme.colors.surface).lighten(1.2).hex()
+        : passedTheme.colors.surface
     )
       .darken(0.1)
       .hex()
-  }, [theme])
+  }, [])
 
   const isAM = mode === 'AM'
   return (
@@ -38,7 +38,7 @@ export default function AmPmSwitcher({
         // eslint-disable-next-line react-native/no-inline-styles
         {
           borderColor: backgroundColor,
-          borderRadius: theme.roundness * 2,
+          borderRadius: passedTheme.roundness * 2,
           height: inputType === inputTypes.keyboard ? 72 : 80,
           marginBottom: inputType === 'keyboard' ? 24 : 0,
         },
@@ -82,12 +82,11 @@ function SwitchButton({
   selected: boolean
   disabled: boolean
 }) {
-  const theme = useTheme()
   const { backgroundColor, color } = useSwitchColors(selected)
 
-  let textFont = theme?.isV3
-    ? theme.fonts.titleMedium
-    : (theme as any as MD2Theme).fonts.medium
+  let textFont = passedTheme?.isV3
+    ? passedTheme.fonts.titleMedium
+    : (passedTheme as any as MD2Theme).fonts.medium
 
   return (
     <TouchableRipple

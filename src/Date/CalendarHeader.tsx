@@ -4,6 +4,7 @@ import { IconButton, useTheme } from 'react-native-paper'
 import DayNames, { dayNamesHeight } from './DayNames'
 import type { DisableWeekDaysType } from './dateUtils'
 import { getTranslation } from '../translations/utils'
+import { passedTheme } from 'src/utils'
 
 const buttonContainerHeight = 56
 const buttonContainerMarginTop = 4
@@ -34,7 +35,6 @@ function CalendarHeader({
   onNext: () => any
   disableWeekDays?: DisableWeekDaysType
 }) {
-  const theme = useTheme()
   const isHorizontal = scrollMode === 'horizontal'
   return (
     <View style={styles.datePickerHeader} pointerEvents={'box-none'}>
@@ -44,7 +44,7 @@ function CalendarHeader({
           <View
             style={[
               styles.buttonWrapper,
-              { backgroundColor: theme.colors.surface },
+              { backgroundColor: passedTheme.colors.surface },
             ]}
           >
             <IconButton
@@ -56,7 +56,7 @@ function CalendarHeader({
           <View
             style={[
               styles.buttonWrapper,
-              { backgroundColor: theme.colors.surface },
+              { backgroundColor: passedTheme.colors.surface },
             ]}
           >
             <IconButton

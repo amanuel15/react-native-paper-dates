@@ -31,7 +31,7 @@
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
-    "prepack": "bob build",
+    "prepack": "npx bob build",
     "build-example": "cd example && npx expo export:web"
   },
   "keywords": [

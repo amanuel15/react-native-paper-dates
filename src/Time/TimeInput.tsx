@@ -15,6 +15,7 @@ import {
   PossibleInputTypes,
   useInputColors,
 } from './timeUtils'
+import { passedTheme } from 'src/utils'
 
 interface TimeInputProps
   extends Omit<Omit<TextInputProps, 'value'>, 'onFocus'> {
@@ -55,7 +56,6 @@ function TimeInput(
     setControlledValue(`${value}`)
   }, [value])
 
-  const theme = useTheme()
   const [inputFocused, setInputFocused] = React.useState<boolean>(false)
 
   const highlighted = inputType === inputTypes.picker ? pressed : inputFocused
@@ -81,12 +81,12 @@ function TimeInput(
             color,
             fontSize: inputFontSize,
             backgroundColor,
-            borderRadius: theme.roundness * 2,
+            borderRadius: passedTheme.roundness * 2,
             borderColor:
-              theme.isV3 && highlighted
-                ? theme.colors.onPrimaryContainer
+              passedTheme.isV3 && highlighted
+                ? passedTheme.colors.onPrimaryContainer
                 : undefined,
-            borderWidth: theme.isV3 && highlighted ? 2 : 0,
+            borderWidth: passedTheme.isV3 && highlighted ? 2 : 0,
             height: inputType === inputTypes.keyboard ? 72 : 80,
           },
         ]}
@@ -95,7 +95,7 @@ function TimeInput(
         maxLength={2}
         onFocus={() => setInputFocused(true)}
         onBlur={() => setInputFocused(false)}
-        keyboardAppearance={theme.dark ? 'dark' : 'default'}
+        keyboardAppearance={passedTheme.dark ? 'dark' : 'default'}
         keyboardType="number-pad"
         onChangeText={onInnerChange}
         {...rest}
@@ -106,12 +106,12 @@ function TimeInput(
             StyleSheet.absoluteFill,
             styles.buttonOverlay,
             {
-              borderRadius: theme.roundness,
+              borderRadius: passedTheme.roundness,
             },
           ]}
           rippleColor={
             Platform.OS !== 'ios'
-              ? Color(theme.colors.onSurface).fade(0.7).hex()
+              ? Color(passedTheme.colors.onSurface).fade(0.7).hex()
               : undefined
           }
           onPress={() => onPress(clockType)}

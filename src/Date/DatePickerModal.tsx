@@ -8,14 +8,14 @@ import {
   Platform,
   StatusBar,
 } from 'react-native'
-import { useTheme } from 'react-native-paper'
+import { MD3Theme, useTheme } from 'react-native-paper'
 import DatePickerModalContent, {
   DatePickerModalContentMultiProps,
   DatePickerModalContentRangeProps,
   DatePickerModalContentSingleProps,
 } from './DatePickerModalContent'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useHeaderBackgroundColor } from '../utils'
+import { passedTheme, useHeaderBackgroundColor } from '../utils'
 
 interface DatePickerModalProps {
   visible: boolean
@@ -30,17 +30,21 @@ interface DatePickerModalProps {
     | 'overFullScreen'
 }
 
+interface PassedProps {
+  theme?: MD3Theme
+}
+
 export interface DatePickerModalSingleProps
   extends DatePickerModalContentSingleProps,
-    DatePickerModalProps {}
+    DatePickerModalProps, PassedProps {}
 
 export interface DatePickerModalMultiProps
   extends DatePickerModalContentMultiProps,
-    DatePickerModalProps {}
+    DatePickerModalProps, PassedProps {}
 
 export interface DatePickerModalRangeProps
   extends DatePickerModalContentRangeProps,
-    DatePickerModalProps {}
+    DatePickerModalProps, PassedProps {}
 
 export function DatePickerModal(
   props:
@@ -48,7 +52,6 @@ export function DatePickerModal(
     | DatePickerModalSingleProps
     | DatePickerModalMultiProps
 ) {
-  const theme = useTheme()
   const dimensions = useWindowDimensions()
   const {
     visible,
@@ -88,7 +91,7 @@ export function DatePickerModal(
               style={[
                 StyleSheet.absoluteFill,
                 styles.modalBackground,
-                { backgroundColor: theme.colors.backdrop },
+                { backgroundColor: passedTheme.colors.backdrop },
               ]}
             />
           </TouchableWithoutFeedback>
@@ -99,7 +102,7 @@ export function DatePickerModal(
             <View
               style={[
                 styles.modalContent,
-                { backgroundColor: theme.colors.surface },
+                { backgroundColor: passedTheme.colors.surface },
                 dimensions.width > 650 ? styles.modalContentBig : null,
               ]}
             >
@@ -113,8 +116,8 @@ export function DatePickerModal(
                         web: insets.top,
                       }),
                       backgroundColor: Platform.select({
-                        ios: theme.colors.primary,
-                        android: theme.colors.primary,
+                        ios: passedTheme.colors.primary,
+                        android: passedTheme.colors.primary,
                         web: headerBackgroundColor,
                       }),
                     },

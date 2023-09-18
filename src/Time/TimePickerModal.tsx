@@ -26,6 +26,7 @@ import {
   PossibleInputTypes,
   reverseInputTypes,
 } from './timeUtils'
+import { passedTheme } from 'src/utils'
 
 const supportedOrientations: (
   | 'portrait'
@@ -76,15 +77,14 @@ export function TimePickerModal({
   inputFontSize?: number
   defaultInputType?: PossibleInputTypes
 }) {
-  const theme = useTheme()
 
   let textFont
   let labelText = label
 
-  if (theme.isV3) {
-    textFont = theme.fonts.labelMedium
+  if (passedTheme.isV3) {
+    textFont = passedTheme.fonts.labelMedium
   } else {
-    textFont = (theme as any as MD2Theme)?.fonts.medium
+    textFont = (passedTheme as any as MD2Theme)?.fonts.medium
   }
 
   const [inputType, setInputType] = React.useState<PossibleInputTypes>(
@@ -145,7 +145,7 @@ export function TimePickerModal({
             style={[
               StyleSheet.absoluteFill,
               styles.modalBackground,
-              { backgroundColor: theme.colors?.backdrop },
+              { backgroundColor: passedTheme.colors?.backdrop },
             ]}
           />
         </TouchableWithoutFeedback>
@@ -162,16 +162,16 @@ export function TimePickerModal({
                 styles.modalContent,
                 {
                   backgroundColor:
-                    theme.dark && theme.isV3
-                      ? theme.colors.elevation.level3
-                      : theme.isV3
-                      ? theme.colors.surface
-                      : theme.dark
-                      ? overlay(10, theme.colors.surface)
-                      : theme.colors.surface,
-                  borderRadius: theme.isV3
-                    ? theme.roundness * 6
-                    : theme.roundness,
+                    passedTheme.dark && passedTheme.isV3
+                      ? passedTheme.colors.elevation.level3
+                      : passedTheme.isV3
+                      ? passedTheme.colors.surface
+                      : passedTheme.dark
+                      ? overlay(10, passedTheme.colors.surface)
+                      : passedTheme.colors.surface,
+                  borderRadius: passedTheme.isV3
+                    ? passedTheme.roundness * 6
+                    : passedTheme.roundness,
                 },
               ]}
             >
@@ -182,9 +182,9 @@ export function TimePickerModal({
                     styles.label,
                     {
                       ...textFont,
-                      color: theme?.isV3
-                        ? theme.colors.onSurfaceVariant
-                        : (theme as any as MD2Theme).colors.text,
+                      color: passedTheme?.isV3
+                        ? passedTheme.colors.onSurfaceVariant
+                        : (passedTheme as any as MD2Theme).colors.text,
                     },
                   ]}
                 >

@@ -16,7 +16,7 @@ import {
 } from './timeUtils'
 import TimeInput from './TimeInput'
 import AmPmSwitcher from './AmPmSwitcher'
-import { useLatest } from '../utils'
+import { passedTheme, useLatest } from '../utils'
 import Color from 'color'
 
 function TimeInputs({
@@ -46,7 +46,6 @@ function TimeInputs({
   const endInput = React.useRef<TextInputNative | null>(null)
   const dimensions = useWindowDimensions()
   const isLandscape = dimensions.width > dimensions.height
-  const theme = useTheme()
 
   const onSubmitStartInput = React.useCallback(() => {
     if (endInput.current) {
@@ -89,9 +88,9 @@ function TimeInputs({
           inputType={inputType}
           maxFontSizeMultiplier={1.2}
           selectionColor={
-            theme.dark
-              ? Color(theme.colors.primary).darken(0.2).hex()
-              : theme.colors.primary
+            passedTheme.dark
+              ? Color(passedTheme.colors.primary).darken(0.2).hex()
+              : passedTheme.colors.primary
           }
           returnKeyType={'next'}
           onSubmitEditing={onSubmitStartInput}
@@ -129,9 +128,9 @@ function TimeInputs({
           style={[
             styles.dot,
             {
-              backgroundColor: theme?.isV3
-                ? theme.colors.onSurface
-                : (theme as any as MD2Theme).colors.text,
+              backgroundColor: passedTheme?.isV3
+                ? passedTheme.colors.onSurface
+                : (passedTheme as any as MD2Theme).colors.text,
             },
           ]}
         />
@@ -140,9 +139,9 @@ function TimeInputs({
           style={[
             styles.dot,
             {
-              backgroundColor: theme?.isV3
-                ? theme.colors.onSurface
-                : (theme as any as MD2Theme).colors.text,
+              backgroundColor: passedTheme?.isV3
+                ? passedTheme.colors.onSurface
+                : (passedTheme as any as MD2Theme).colors.text,
             },
           ]}
         />
@@ -160,9 +159,9 @@ function TimeInputs({
           inputType={inputType}
           maxFontSizeMultiplier={1.2}
           selectionColor={
-            theme.dark
-              ? Color(theme.colors.primary).darken(0.2).hex()
-              : theme.colors.primary
+            passedTheme.dark
+              ? Color(passedTheme.colors.primary).darken(0.2).hex()
+              : passedTheme.colors.primary
           }
           onSubmitEditing={onSubmitEndInput}
           onChanged={(newMinutesFromInput) => {
