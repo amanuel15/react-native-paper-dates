@@ -26,14 +26,13 @@
     "test-watch": "jest --config=jest.config.js --watchAll",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "prepare": "bob build",
     "release": "release-it --ci --github.autoGenerate",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
     "prepack": "npx bob build",
     "build-example": "cd example && npx expo export:web",
-    "build": "tsc"
+    "build": "bob build"
   },
   "keywords": [
     "react-native",
